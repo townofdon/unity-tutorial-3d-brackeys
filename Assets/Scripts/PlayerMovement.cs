@@ -2,6 +2,7 @@
 
 public class PlayerMovement : MonoBehaviour
 {
+    private GameManager gameManager;
     public Rigidbody rb;
     public float forwardForce = 4000f;
     public float sidewaysForce = 100;
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         rb.useGravity = true;
         rb.maxAngularVelocity = 2 * 2 * Mathf.PI;
     }
@@ -44,5 +46,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.AddRelativeTorque(0, _currentTorque * Time.deltaTime, 0, ForceMode.VelocityChange);
+
+        if (rb.position.y < -10) {
+            gameManager.EndGame();
+        }
     }
 }
