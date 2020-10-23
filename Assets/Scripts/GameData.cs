@@ -2,19 +2,37 @@
 
 public class GameData : MonoBehaviour
 {
-    private static int score = 0;
+    private static bool isKeepingScore = true;
+    private static int scoreOfficial = 0;
+    private static int scoreCurrent = 0;
 
-    public static int AddScore(int num) {
-        score += num;
-        return score;
+    public static void OnLevelWin() {
+        scoreOfficial = scoreCurrent;
+        isKeepingScore = false;
     }
 
-    public static int ResetScore() {
-        score = 0;
-        return score;
+    public static void OnLevelStart() {
+        scoreCurrent = scoreOfficial;
+        isKeepingScore = true;
     }
 
-    public static int GetScore() {
-        return score;
+    public static void ResetData() {
+        scoreOfficial = 0;
+        scoreCurrent = 0;
+        isKeepingScore = true;
+    }
+
+    public static void AddScore(int num) {
+        if (isKeepingScore) {
+            scoreCurrent += num;
+        }
+    }
+
+    public static int GetCurrentScore() {
+        return scoreCurrent;
+    }
+
+    public static int GetOfficialScore() {
+        return scoreOfficial;
     }
 }

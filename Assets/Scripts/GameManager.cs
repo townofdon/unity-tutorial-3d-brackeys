@@ -55,9 +55,12 @@ public class GameManager : MonoBehaviour
 
     public void StartFirstLevel() {
         SceneManager.LoadScene(1);
+        hasGameEnded = false;
+        GameData.ResetData();
     }
 
     public void CompleteLevel() {
+        GameData.OnLevelWin();
         if (levelCompleteUI) {
             levelCompleteUI.SetActive(true);
             Invoke("LoadNextLevel", loadNextLevelWaitSeconds);
@@ -68,6 +71,8 @@ public class GameManager : MonoBehaviour
 
     void LoadNextLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        hasGameEnded = false;
+        GameData.OnLevelStart();
         ResetLevelCompleteUI();
     }
 
@@ -80,7 +85,8 @@ public class GameManager : MonoBehaviour
 
     void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        ResetLevelCompleteUI();
         hasGameEnded = false;
+        GameData.OnLevelStart();
+        ResetLevelCompleteUI();
     }
 }

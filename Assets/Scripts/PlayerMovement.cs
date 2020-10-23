@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 deltaPosition = rb.position - _lastPosition;
             // get the amount of distance that the user has accumulated relative to the current goal direction
             float amountTraversedTowardsGoal = Vector3.Dot(deltaPosition, _currentGoalDirection);
-            GameData.AddScore((int) Mathf.Round(amountTraversedTowardsGoal));
+            GameData.AddScore((int) Mathf.Round(amountTraversedTowardsGoal * 10));
         }
 
         _lastPosition = rb.position;

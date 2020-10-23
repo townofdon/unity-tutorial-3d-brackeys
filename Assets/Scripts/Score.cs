@@ -10,7 +10,7 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int score = GameData.GetScore();
+        int score = GameData.GetCurrentScore();
         scoreText.text = score.ToString();
     }
 }
