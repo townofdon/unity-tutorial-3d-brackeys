@@ -11,7 +11,7 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log(collisionInfo.relativeVelocity.magnitude);
         }
         if (collisionInfo.collider.tag == "Obstacle" && collisionInfo.relativeVelocity.magnitude >= impactForceToLose ) {
-            FindObjectOfType<GameManager>().EndGame();
+            GameManager.getInstance().EndGame();
             rb.AddExplosionForce(15, collisionInfo.transform.position, 10, 1, ForceMode.Impulse);
             Debug.Log(collisionInfo.impulse);
             movement.enabled = false;

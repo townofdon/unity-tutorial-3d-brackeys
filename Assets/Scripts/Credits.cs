@@ -6,7 +6,7 @@ public class Credits : MonoBehaviour
 {
     public void PlayAgain()
     {
-        SceneManager.LoadScene(1);
+        GameManager.getInstance().StartFirstLevel();
     }
 
     public void Quit()

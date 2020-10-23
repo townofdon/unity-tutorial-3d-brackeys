@@ -10,7 +10,7 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float progress = Mathf.Max(playerTransform.position.z, 0);
-        scoreText.text = progress.ToString("0");
+        int score = GameData.GetScore();
+        scoreText.text = score.ToString();
     }
 }
